@@ -24,23 +24,23 @@
 
 struct DriveShaft
 {
-	btScalar inertia;
-	btScalar inv_inertia;
-	btScalar ang_velocity;
-	btScalar angle;
+        btScalar inertia;
+        btScalar inv_inertia;
+        btScalar ang_velocity;
+        btScalar angle;
 
-	DriveShaft() : inertia(1), inv_inertia(1), ang_velocity(0), angle(0) {}
+        DriveShaft() : inertia(1), inv_inertia(1), ang_velocity(0), angle(0) {
+        }
 
-	void applyImpulse(btScalar impulse)
-	{
-		ang_velocity += inv_inertia * impulse;
-	}
+        void applyImpulse(btScalar impulse)
+        {
+                ang_velocity += inv_inertia * impulse;
+        }
 
-	void integrate(btScalar dt)
-	{
-		angle += ang_velocity * dt;
-	}
+        void integrate(btScalar dt)
+        {
+                angle += ang_velocity * dt;
+        }
 };
 
 #endif // _DRIVESHAFT_H
-

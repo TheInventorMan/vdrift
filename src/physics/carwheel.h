@@ -26,99 +26,100 @@
 class CarWheel
 {
 public:
-	CarWheel() : radius(0.3), width(0.2), mass(20) {}
+        CarWheel() : radius(0.3), width(0.2), mass(20) {
+        }
 
-	btScalar GetRotation() const
-	{
-		return shaft.angle;
-	}
+        btScalar GetRotation() const
+        {
+                return shaft.angle;
+        }
 
-	btScalar GetRPM() const
-	{
-		return shaft.ang_velocity * btScalar(30 / M_PI);
-	}
+        btScalar GetRPM() const
+        {
+                return shaft.ang_velocity * btScalar(30 / M_PI);
+        }
 
-	btScalar GetAngularVelocity() const
-	{
-		return shaft.ang_velocity;
-	}
+        btScalar GetAngularVelocity() const
+        {
+                return shaft.ang_velocity;
+        }
 
-	void SetAngularVelocity(btScalar value)
-	{
-		shaft.ang_velocity = value;
-	}
+        void SetAngularVelocity(btScalar value)
+        {
+                shaft.ang_velocity = value;
+        }
 
-	void SetMass(btScalar value)
-	{
-		mass = value;
-	}
+        void SetMass(btScalar value)
+        {
+                mass = value;
+        }
 
-	btScalar GetMass() const
-	{
-		return mass;
-	}
+        btScalar GetMass() const
+        {
+                return mass;
+        }
 
-	void SetWidth(float value)
-	{
-		width = value;
-	}
+        void SetWidth(float value)
+        {
+                width = value;
+        }
 
-	btScalar GetWidth() const
-	{
-		return width;
-	}
+        btScalar GetWidth() const
+        {
+                return width;
+        }
 
-	void SetRadius(float value)
-	{
-		radius = value;
-	}
+        void SetRadius(float value)
+        {
+                radius = value;
+        }
 
-	btScalar GetRadius() const
-	{
-		return radius;
-	}
+        btScalar GetRadius() const
+        {
+                return radius;
+        }
 
-	void SetInertia(btScalar value)
-	{
-		shaft.inertia = value;
-		shaft.inv_inertia = 1 / value;
-	}
+        void SetInertia(btScalar value)
+        {
+                shaft.inertia = value;
+                shaft.inv_inertia = 1 / value;
+        }
 
-	btScalar GetInertia() const
-	{
-		return shaft.inertia;
-	}
+        btScalar GetInertia() const
+        {
+                return shaft.inertia;
+        }
 
-	DriveShaft & GetShaft()
-	{
-		return shaft;
-	}
+        DriveShaft & GetShaft()
+        {
+                return shaft;
+        }
 
-	void Integrate(btScalar dt)
-	{
-		shaft.integrate(dt);
-	}
+        void Integrate(btScalar dt)
+        {
+                shaft.integrate(dt);
+        }
 
-	template <class Stream>
-	void DebugPrint(Stream & out) const
-	{
-		out << "---Wheel---" << "\n";
-		out << "RPM: " << GetRPM() << "\n";
-	}
+        template <class Stream>
+        void DebugPrint(Stream & out) const
+        {
+                out << "---Wheel---" << "\n";
+                out << "RPM: " << GetRPM() << "\n";
+        }
 
-	template <class Serializer>
-	bool Serialize(Serializer & s)
-	{
-		_SERIALIZE_(s, shaft.ang_velocity);
-		_SERIALIZE_(s, shaft.angle);
-		return true;
-	}
+        template <class Serializer>
+        bool Serialize(Serializer & s)
+        {
+                _SERIALIZE_(s, shaft.ang_velocity);
+                _SERIALIZE_(s, shaft.angle);
+                return true;
+        }
 
 private:
-	DriveShaft shaft;
-	btScalar radius;
-	btScalar width;
-	btScalar mass;
+        DriveShaft shaft;
+        btScalar radius;
+        btScalar width;
+        btScalar mass;
 };
 
 #endif
